@@ -21,4 +21,4 @@ class OtherDevices extends Component {
 }
 
 const mapStateToProps = (state) => state;
-export default connect(mapStateToProps)(OthereDevices);
+export default connect(mapStateToProps)(OtherDevices);
