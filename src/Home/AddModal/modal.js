@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Modal from 'react-modal';
+import { connect } from 'react-redux';
 
 class AddModal extends Component {
     constructor(props) {
@@ -8,8 +9,13 @@ class AddModal extends Component {
         this.openModal = this.openModal.bind(this);
         this.afterOpenModal = this.afterOpenModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
+        this.updateName = this.updateName.bind(this);
+        this.updateComputerNo = this.updateComputerNo.bind(this);
         this.state = {
-            modalIsOpen: false
+            modalIsOpen: false,
+            name: '',
+            computerNo: '',
+            comment: ''
         }
     }
     getInitialState() {
@@ -28,6 +34,23 @@ class AddModal extends Component {
     closeModal() {
         this.setState({ modalIsOpen: false });
     }
+    updateName(event) {
+        this.setState({
+            name: event.target.value
+        })
+    }
+    updateComputerNo(event) {
+        this.setState({
+            computerNo: event.target.value
+        })
+    }
+
+    updateComment(event) {
+        this.setState({
+            comment: event.target.value
+        })
+    }
+
     render() {
         return (
             <div>
@@ -54,7 +77,13 @@ class AddModal extends Component {
                         <div>
                             <label>Name</label>
                             <div>
-                                <input type='text' />
+                                <input type='text' value={this.state.name} onChange={this.updateName} />
+                            </div>
+                        </div>
+                        <div>
+                            <label>Computer No</label>
+                            <div>
+                                <input type='text' value={this.state.computerNo} onChange={this.updateComputerNo} />
                             </div>
                         </div>
                         <div>
@@ -64,15 +93,9 @@ class AddModal extends Component {
                             </div>
                         </div>
                         <div>
-                            <label>Name</label>
+                            <label>Comments</label>
                             <div>
-                                <input type='text' />
-                            </div>
-                        </div>
-                        <div>
-                            <label>Name</label>
-                            <div>
-                                <input type='text' />
+                                <textarea value={this.state.comment} onChange={this.updateComment} />
                             </div>
                         </div>
 
@@ -97,4 +120,6 @@ const customStyles = {
         zIndex: '12'
     }
 };
-export default AddModal;
+
+const mapStateToProps = (state) => state;
+export default connect(mapStateToProps)(AddModal);
