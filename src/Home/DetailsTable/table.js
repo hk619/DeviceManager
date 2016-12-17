@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
+import AddModal from '../AddModal/modal';
 
 class Table extends Component {
     constructor(props) {
-        super(props)
+        super(props);
+        this.editDetails = this.editDetails.bind(this);
     }
-    comp
+    editDetails() {
+        debugger
+    }
     render() {
         return (
             <div style={{ paddingTop: 100 }}>
@@ -24,7 +28,8 @@ class Table extends Component {
                             <td>John</td>
                             <td>Carter</td>
                             <td>johncarter@mail.com</td>
-                            <td><button className='btn btn-info btn-sm'>Edit</button><button className=' paddign btn btn-danger btn-sm'>Delete</button></td>
+                            <td><AddModal label='Edit' class="btn btn-info btn-sm" title="Edit Device"/>
+                                <button className=' paddign btn btn-danger btn-sm'>Delete</button></td>
                         </tr>
                         <tr>
                             <td>2</td>
@@ -126,7 +131,7 @@ class Table extends Component {
                         </tr>
                     </tbody>
                 </table>
-            </div>
+            </div >
         );
     }
 }

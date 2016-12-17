@@ -2,22 +2,31 @@ import React, { Component } from "react";
 import Modal from 'react-modal';
 import { connect } from 'react-redux';
 import * as modelAction from './modal_action_creator';
+import Select from 'react-select';
+import 'react-select/dist/react-select.css';
 
 class AddModal extends Component {
     constructor(props) {
         super(props);
-        this.openModal = this.openModal.bind(this);
-        this.afterOpenModal = this.afterOpenModal.bind(this);
-        this.closeModal = this.closeModal.bind(this);
-        this.updateName = this.updateName.bind(this);
-        this.updateComputerNo = this.updateComputerNo.bind(this);
         this.submit = this.submit.bind(this);
+        this.logChange = this.logChange.bind(this);
+        this.openModal = this.openModal.bind(this);
+        this.updateName = this.updateName.bind(this);
+        this.closeModal = this.closeModal.bind(this);
+        this.afterOpenModal = this.afterOpenModal.bind(this);
+        this.updateComputerNo = this.updateComputerNo.bind(this);
+
         this.state = {
-            modalIsOpen: false,
             name: '',
+            type: "",
+            comment: '',
             computerNo: '',
-            comment: ''
+            modalIsOpen: false
         }
+        this.options = [
+            { value: 'one', label: 'One' },
+            { value: 'two', label: 'Two' }
+        ];
     }
     openModal() {
         this.setState({ modalIsOpen: true });
@@ -57,11 +66,17 @@ class AddModal extends Component {
         }
         this.add_device(this.modalData);
     }
+    
+    logChange(event) {
+        this.setState({
+            type: event.value
+        })
+    }
 
     render() {
         return (
-            <div>
-                <button className="btn btn-primary" onClick={this.openModal}>Add</button>
+            <div >
+                <button className={this.props.class} onClick={this.openModal}>{this.props.label}</button>
                 <Modal
                     contentLabel="modal"
                     isOpen={this.state.modalIsOpen}
@@ -69,13 +84,15 @@ class AddModal extends Component {
                     onRequestClose={this.closeModal}
                     style={customStyles}
                     >
-                    <h3>Add Device</h3>
+                    <h3>{this.props.title}</h3>
                     <form className="form-group">
                         <div>
-                            <label>Type</label>
-                            <div>
-
-                            </div>
+                            <Select
+                                name="Device Type"
+                                value={this.state.type}
+                                options={this.options}
+                                onChange={this.logChange}
+                                />
                         </div>
                         <div>
                             <label>Name</label>

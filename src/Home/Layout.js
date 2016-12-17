@@ -94,7 +94,7 @@ class Layout extends Component {
                                     </div>
                                 </li>
                                 <li style={{ marginLeft: 20, marginTop: 8 }}>
-                                    <AddModal />
+                                    <AddModal label='Add' class="btn btn-primary" title="Add Device"/>
                                 </li>
                             </ul>
                         </div>
