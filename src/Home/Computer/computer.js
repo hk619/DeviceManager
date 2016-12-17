@@ -1,10 +1,13 @@
 import React from 'react';
 import Table from '../DetailsTable/table';
 import { connect } from 'react-redux';
-
+import * as computerAction from './computer_action_creator';
 class Computer extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+    }
+    componentDidMount() {
+        this.props.computer_list();
     }
     render() {
         return (
@@ -18,4 +21,4 @@ class Computer extends React.Component {
     }
 }
 const mapStateToProps = (state) => state;
-export default connect(mapStateToProps)(Computer);
+export default connect(mapStateToProps, computerAction)(Computer);

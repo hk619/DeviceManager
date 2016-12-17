@@ -12,7 +12,7 @@ class Layout extends Component {
         this.otherClick = this.otherClick.bind(this);
         this.allClick = this.allClick.bind(this);
         this.selected = 'laptop';
-        this.active='active'
+        this.active = 'active'
         switch (this.props.location.pathname) {
             case "/computer": {
                 this.selected = 'computer';
@@ -21,6 +21,11 @@ class Layout extends Component {
             }
             case "/others": {
                 this.selected = 'other';
+                this.props.change_tab(this.selected);
+                break;
+            }
+            case "/all": {
+                this.selected = 'all';
                 this.props.change_tab(this.selected);
                 break;
             }
@@ -73,10 +78,10 @@ class Layout extends Component {
                     <nav style={{ marginTop: 0, backgroundColor: '#E0E0E0' }}>
                         <div className="container-fluid">
                             <ul className="nav navbar-nav">
-                                <li className={this.props.selectedTab=='laptop'?this.active:''}><Link to='laptop' onClick={this.laptopClick}>LAPTOP</Link></li>
-                                <li className={this.props.selectedTab=='computer'?this.active:''}><Link to='computer' onClick={this.computerClick} >COMPUTER </Link></li>
-                                <li className={this.props.selectedTab=='other'?this.active:''}><Link to='others' onClick={this.otherClick}>OTHER DEVICES</Link></li>
-                                <li className={this.props.selectedTab=='all'?this.active:''}><Link to='all' onClick={this.allClick}>ALL DEVICES</Link></li>
+                                <li className={this.props.selectedTab == 'laptop' ? this.active : ''}><Link to='laptop' onClick={this.laptopClick}>LAPTOP</Link></li>
+                                <li className={this.props.selectedTab == 'computer' ? this.active : ''}><Link to='computer' onClick={this.computerClick} >COMPUTER </Link></li>
+                                <li className={this.props.selectedTab == 'other' ? this.active : ''}><Link to='others' onClick={this.otherClick}>OTHER DEVICES</Link></li>
+                                <li className={this.props.selectedTab == 'all' ? this.active : ''}><Link to='all' onClick={this.allClick}>ALL DEVICES</Link></li>
 
                                 <li style={{ marginLeft: 600, marginTop: 8 }}>
                                     <div className="input-group stylish-input-group" style={{ width: 250 }}>

@@ -1,18 +1,15 @@
 import React from 'react';
 import Table from '../DetailsTable/table';
-import Request from 'superagent';
 import { connect } from 'react-redux'
+import * as laptopAction from './laptop_action_creator';
 
 class Laptop extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
     }
     componentDidMount() {
-        Request.get("http://localhost:38077/device/get-all-devices")
-            .then((resp) => {
-                console.log(resp.body)
-            })
+        this.props.laptop_list();
     }
     render() {
         return (
@@ -21,7 +18,6 @@ class Laptop extends React.Component {
                     <h1 className="pull-left" style={{ paddingLeft: 23 }}>
                         laptop
                 </h1>
-
                 </span>
                 <Table />
             </div>
@@ -30,4 +26,4 @@ class Laptop extends React.Component {
 }
 
 const mapStateToProps = (state) => state;
-export default connect(mapStateToProps)(Laptop);
+export default connect(mapStateToProps, laptopAction)(Laptop);

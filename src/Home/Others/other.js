@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import Table from '../DetailsTable/table';
 import { connect } from 'react-redux';
+import * as otherAction from './other_action_creator';
 
 class OtherDevices extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+    }
+    componentDidMount() {
+        this.props.other_list();
     }
     render() {
         return (
@@ -21,4 +25,4 @@ class OtherDevices extends Component {
 }
 
 const mapStateToProps = (state) => state;
-export default connect(mapStateToProps)(OtherDevices);
+export default connect(mapStateToProps, otherAction)(OtherDevices);
