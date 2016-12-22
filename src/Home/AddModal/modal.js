@@ -1,9 +1,12 @@
-import React, { Component } from "react";
+import moment from 'moment';
 import Modal from 'react-modal';
-import { connect } from 'react-redux';
-import * as modelAction from './modal_action_creator';
 import Select from 'react-select';
+import { connect } from 'react-redux';
+import React, { Component } from "react";
+import DatePicker from 'react-datepicker';
 import 'react-select/dist/react-select.css';
+import 'react-datepicker/dist/react-datepicker.css';
+import * as modalAction from './modal_action_creator';
 
 class AddModal extends Component {
     constructor(props) {
@@ -15,18 +18,40 @@ class AddModal extends Component {
         this.closeModal = this.closeModal.bind(this);
         this.afterOpenModal = this.afterOpenModal.bind(this);
         this.updateComputerNo = this.updateComputerNo.bind(this);
-
-        this.state = {
-            name: '',
-            type: "",
-            comment: '',
-            computerNo: '',
-            modalIsOpen: false
-        }
+        // this.state = {
+        //     name: '',
+        //     type: "",
+        //     comment: '',
+        //     computerNo: '',
+        //     modalIsOpen: false,
+        //     startDate: moment()
+        // }
         this.options = [
-            { value: 'one', label: 'One' },
-            { value: 'two', label: 'Two' }
+            { value: 'laptop', label: 'Laptop' },
+            { value: 'computer', label: 'Computer' },
+            { value: 'otherdevices', label: 'Other Devices' }
+
         ];
+        if (this.props.label === 'Edit') {
+            this.state = {
+                name: this.props.detailsList[this.props.editIndex].name,
+                type: this.props.detailsList[this.props.editIndex].type,
+                comment: this.props.detailsList[this.props.editIndex].comment,
+                computerNo: this.props.detailsList[this.props.editIndex].computerNo,
+                modalIsOpen: false,
+                startDate: this.props.detailsList[this.props.editIndex].startDate,
+            }
+        }
+        else {
+            this.state = {
+                name: '',
+                type: "",
+                comment: '',
+                computerNo: '',
+                modalIsOpen: false,
+                startDate: moment()
+            }
+        }
     }
     openModal() {
         this.setState({ modalIsOpen: true });
@@ -38,7 +63,9 @@ class AddModal extends Component {
     }
 
     closeModal() {
-        this.setState({ modalIsOpen: false });
+        this.setState({
+            modalIsOpen: false
+        });
     }
     updateName(event) {
         this.setState({
@@ -64,9 +91,10 @@ class AddModal extends Component {
             computerNo: this.state.computerNo,
             comment: this.state.comment
         }
-        this.add_device(this.modalData);
+        this.props.add_device(this.modalData);
+        this.closeModal()
     }
-    
+
     logChange(event) {
         this.setState({
             type: event.value
@@ -74,6 +102,7 @@ class AddModal extends Component {
     }
 
     render() {
+        debugger
         return (
             <div >
                 <button className={this.props.class} onClick={this.openModal}>{this.props.label}</button>
@@ -95,21 +124,35 @@ class AddModal extends Component {
                                 />
                         </div>
                         <div>
-                            <label>Name</label>
+                            <label>Model</label>
                             <div>
                                 <input label="Name" type='text' value={this.state.name} onChange={this.updateName} />
                             </div>
                         </div>
                         <div>
-                            <label>Computer No</label>
+                            <label>Serial No</label>
                             <div>
                                 <input label="Name" type='text' value={this.state.computerNo} onChange={this.updateComputerNo} />
                             </div>
                         </div>
                         <div>
-                            <label>Name</label>
+                            <label>Emp Name</label>
                             <div>
                                 <input label="Name" type='text' />
+                            </div>
+                        </div>
+                        <div>
+                            <label>Asset ID</label>
+                            <div>
+                                <input label="Name" type='text' />
+                            </div>
+                        </div>
+                        <div>
+                            <label>Purchase Date</label>
+                            <div>
+                                <DatePicker
+                                    selected={this.state.startDate}
+                                    onChange={this.handleChange} />
                             </div>
                         </div>
                         <div>
@@ -142,4 +185,4 @@ const customStyles = {
 };
 
 const mapStateToProps = (state) => state;
-export default connect(mapStateToProps, modelAction)(AddModal);
+export default connect(mapStateToProps, modalAction)(AddModal);

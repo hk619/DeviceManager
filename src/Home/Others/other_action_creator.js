@@ -6,7 +6,13 @@ export function other_list() {
             .then((list) => {
                 dispatch({
                     type: 'LOAD_LIST',
-                    list
+                    list: [{
+                        name: 'A2'
+                    }, {
+                        name: 'B2'
+                    }, {
+                        name: 'C2'
+                    }]
                 })
             })
     }

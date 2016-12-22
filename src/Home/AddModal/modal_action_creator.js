@@ -2,7 +2,13 @@
 export function add_device(modelData) {
     return {
         type: 'ADD_DEVICE',
-        modelData
+        modelData: [{
+            name: 'A9'
+        }, {
+            name: 'B9'
+        }, {
+            name: 'C9'
+        }]
     }
 }
 

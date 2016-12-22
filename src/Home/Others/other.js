@@ -1,6 +1,6 @@
+import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import Table from '../DetailsTable/table';
-import { connect } from 'react-redux';
 import * as otherAction from './other_action_creator';
 
 class OtherDevices extends Component {

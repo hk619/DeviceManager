@@ -8,9 +8,9 @@ class Login extends Component {
             username: '',
             password: ''
         }
-        this.unameChange = this.unameChange.bind(this);
-        this.passChange = this.passChange.bind(this);
         this.submit = this.submit.bind(this);
+        this.passChange = this.passChange.bind(this);
+        this.unameChange = this.unameChange.bind(this);
     }
     unameChange(event) {
         this.setState({

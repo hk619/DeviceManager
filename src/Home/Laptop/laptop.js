@@ -1,14 +1,13 @@
 import React from 'react';
-import Table from '../DetailsTable/table';
 import { connect } from 'react-redux'
+import Table from '../DetailsTable/table';
 import * as laptopAction from './laptop_action_creator';
 
 class Laptop extends React.Component {
     constructor(props) {
         super(props);
-
     }
-    componentDidMount() {
+    componentWillMount() {
         this.props.laptop_list();
     }
     render() {

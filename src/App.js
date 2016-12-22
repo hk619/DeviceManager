@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import Login from './Login/login';
-import Home from './Home/home';
 import './App.css';
+import logo from './logo.svg';
+import Home from './Home/home';
+import Login from './Login/login';
+import React, { Component } from 'react';
 import { Router, Route, hashHistory, IndexRedirect, } from 'react-router';
 
 
@@ -13,7 +13,7 @@ class App extends Component {
   }
 
   submit() {
-    console.log(this.props)
+  
   }
 
   render() {

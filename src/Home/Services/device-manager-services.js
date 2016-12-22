@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
 import Request from 'superagent';
+import React, { Component } from 'react';
 
 export const LoadList = () => {
     return Request.get("http://localhost:38077/device/get-all-devices")

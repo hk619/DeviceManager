@@ -1,139 +1,101 @@
+import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import AddModal from '../AddModal/modal';
+import * as tableAction from './table_action_creator';
 
 class Table extends Component {
     constructor(props) {
         super(props);
-        this.editDetails = this.editDetails.bind(this);
+        this.deleteData = this.deleteData.bind(this);
     }
-    editDetails() {
-        debugger
+    deleteData(data) {
+        this.props.delete_item(data, this.props.detailsList);
     }
     render() {
-        return (
-            <div style={{ paddingTop: 100 }}>
-                <table className="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Row</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Email</th>
-                            <th>Edit</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>John</td>
-                            <td>Carter</td>
-                            <td>johncarter@mail.com</td>
-                            <td><AddModal label='Edit' class="btn btn-info btn-sm" title="Edit Device"/>
-                                <button className=' paddign btn btn-danger btn-sm'>Delete</button></td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Peter</td>
-                            <td>Parker</td>
-                            <td>peterparker@mail.com</td>
-                            <td><button className='btn btn-info btn-sm'>Edit</button><button className='btn btn-danger btn-sm'>Delete</button></td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>John</td>
-                            <td>Rambo</td>
-                            <td>johnrambo@mail.com</td>
-                            <td><button className='btn btn-info btn-sm'>Edit</button><button className='btn btn-danger btn-sm'>Delete</button></td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>John</td>
-                            <td>Carter</td>
-                            <td>johncarter@mail.com</td>
-                            <td><button className='btn btn-info btn-sm'>Edit</button><button className='btn btn-danger btn-sm'>Delete</button></td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Peter</td>
-                            <td>Parker</td>
-                            <td>peterparker@mail.com</td>
-                            <td><button className='btn btn-info btn-sm'>Edit</button><button className='btn btn-danger btn-sm'>Delete</button></td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>John</td>
-                            <td>Rambo</td>
-                            <td>johnrambo@mail.com</td>
-                            <td><button className='btn btn-info btn-sm'>Edit</button><button className='btn btn-danger btn-sm'>Delete</button></td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>John</td>
-                            <td>Carter</td>
-                            <td>johncarter@mail.com</td>
-                            <td><button className='btn btn-info btn-sm'>Edit</button><button className='btn btn-danger btn-sm'>Delete</button></td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Peter</td>
-                            <td>Parker</td>
-                            <td>peterparker@mail.com</td>
-                            <td><button className='btn btn-info btn-sm'>Edit</button><button className='btn btn-danger btn-sm'>Delete</button></td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>John</td>
-                            <td>Rambo</td>
-                            <td>johnrambo@mail.com</td>
-                            <td><button className='btn btn-info btn-sm'>Edit</button><button className='btn btn-danger btn-sm'>Delete</button></td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>John</td>
-                            <td>Carter</td>
-                            <td>johncarter@mail.com</td>
-                            <td><button className='btn btn-info btn-sm'>Edit</button><button className='btn btn-danger btn-sm'>Delete</button></td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Peter</td>
-                            <td>Parker</td>
-                            <td>peterparker@mail.com</td>
-                            <td><button className='btn btn-info btn-sm'>Edit</button><button className='btn btn-danger btn-sm'>Delete</button></td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>John</td>
-                            <td>Rambo</td>
-                            <td>johnrambo@mail.com</td>
-                            <td><button className='btn btn-info btn-sm'>Edit</button><button className='btn btn-danger btn-sm'>Delete</button></td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>John</td>
-                            <td>Carter</td>
-                            <td>johncarter@mail.com</td>
-                            <td><button className='btn btn-info btn-sm'>Edit</button><button className='btn btn-danger btn-sm'>Delete</button></td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Peter</td>
-                            <td>Parker</td>
-                            <td>peterparker@mail.com</td>
-                            <td><button className='btn btn-info btn-sm'>Edit</button><button className='btn btn-danger btn-sm'>Delete</button></td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>John</td>
-                            <td>Rambo</td>
-                            <td>johnrambo@mail.com</td>
-                            <td><button className='btn btn-info btn-sm'>Edit</button><button className='btn btn-danger btn-sm'>Delete</button></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div >
-        );
+        if (this.props.detailsList.length) {
+            return (
+                <div style={{ paddingTop: 100 }}>
+                    <table className="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Serial No</th>
+                                <th>Model</th>
+                                <th>Employee No</th>
+                                <th>Asset ID</th>
+                                <th>Purchase Date</th>
+                                <th>Remark</th>
+                                <th>Edit/Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                this.props.detailsList.map(({name}, index) => {
+                                    let deleteRowClick = this.deleteData.bind(this, index);
+                                    return (
+                                        <tr key={index}>
+                                            <td>
+                                                {name}
+                                            </td>
+                                            <td>
+                                                {name}
+                                            </td>
+                                            <td>
+                                                {name}
+                                            </td>
+                                            <td>
+                                                {name}
+                                            </td>
+                                            <td>
+                                                {name}
+                                            </td>
+                                            <td>
+                                                {name}
+                                            </td>
+                                            <td><AddModal label='Edit' class="btn btn-info btn-sm" title="Edit Device" edit='true' editIndex={index} />
+                                                <button className=' paddign btn btn-danger btn-sm' onClick={deleteRowClick}>Delete</button></td>
+                                        </tr>
+                                    )
+                                })
+                            }
+                        </tbody>
+                    </table>
+                </div >
+            );
+        } else {
+            return (
+                <div style={{ paddingTop: 100 }}>
+                    <table className="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Serial No</th>
+                                <th>Model</th>
+                                <th>Employee No</th>
+                                <th>Asset ID</th>
+                                <th>Purchase Date</th>
+                                <th>Remark</th>
+                                <th>Edit/Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colSpan='7'>
+                                    <NoList />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            )
+        }
     }
 }
 
-export default Table;
+const NoList = () => (
+    <div>
+        No results found
+    </div>
+);
+
+const mapStateToProps = (state) => state;
+export default connect(mapStateToProps, tableAction)(Table);

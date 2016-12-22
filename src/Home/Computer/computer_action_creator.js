@@ -6,7 +6,13 @@ export function computer_list() {
             .then((list) => {
                 dispatch({
                     type: 'LOAD_LIST',
-                    list
+                     list: [{
+                        name: 'A1'
+                    }, {
+                        name: 'B1'
+                    }, {
+                        name: 'C1'
+                    }]
                 })
             })
     }

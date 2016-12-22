@@ -1,6 +1,6 @@
 import React from 'react';
-import Table from '../DetailsTable/table';
 import { connect } from 'react-redux';
+import Table from '../DetailsTable/table';
 import * as allDevicesAction from './all_device_action_creator';
 
 class All extends React.Component {
