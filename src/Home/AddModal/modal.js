@@ -112,9 +112,9 @@ class AddModal extends Component {
                     onAfterOpen={this.afterOpenModal}
                     onRequestClose={this.closeModal}
                     style={customStyles}
-                    >
+                >
                     <h3>{this.props.title}</h3>
-                    <form className="form-group">
+                    {/*<form className="form-group">
                         <div>
                             <Select
                                 name="Device Type"
@@ -162,7 +162,23 @@ class AddModal extends Component {
                             </div>
                         </div>
 
-                    </form>
+                    </form>*/}
+                    <div className="container">
+                        <form>
+                            <div className="form-group row">
+                                <label for="lgFormGroupInput" className="col-sm-2 col-form-label col-form-label-lg">Email</label>
+                                <div className="col-sm-10">
+                                    <input type="email" className="form-control form-control-lg" id="lgFormGroupInput" placeholder="you@example.com" />
+                                </div>
+                            </div>
+                            <div className="form-group row">
+                                <label for="smFormGroupInput" className="col-sm-2 col-form-label col-form-label-sm">Email</label>
+                                <div className="col-sm-10">
+                                    <input type="email" className="form-control form-control-sm" id="smFormGroupInput" placeholder="you@example.com" />
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                     <button className="btn btn-success" onClick={this.submit}>Save</button>
                     <button className="btn btn-danger" onClick={this.closeModal}>Close</button>
                 </Modal>
